@@ -27,12 +27,16 @@ FMCW is a short-range measuring radar set that operates in real-time and is suit
     - max beat frequency
     - sampling rate (sampling frequency), sampling period
     - length of each chirp in samples
-3. Then I Produce the signal cube by using the last formula $y_{lk}$ 
-on page 3 the equations_LMCW_radar.pdf 
+3. Then I Produce the signal cube by using $y_{l,k}$ formula
+
+$$y_{l,k}[n] = cos(2\pi(2\frac{BW.d_m}{T_{chirp}c}nT_s+2\frac{v_m}{\lambda_{carrier}}(l-1)T_{chirp}+\frac{d_ssin(\theta_m)}{\lambda_carrier}(k-1)))$$
+
+$$0\le n\le \lfloor{\frac{T_{chirp}}{T_s}}\rfloor-1,1\le l \le N_{chirp},1 \le k \le N_{antennas}$$
+
 4. Adding two $y_{lk}$ signals of two Objects
-5. Calculating the 3d $fft$ with $fftshift$ of $y_{lk}$ by zero padding to the next power of two
+5. Calculating the 3d $fft$ with $fftshift$ of $y_{l,k}$ by zero padding to the next power of two
 6. Finding the two maximums for future plotting of 1D ffts
-7. Calculating the 3d $fft$ with $fftshift$ of $y_{lk}$ again by zero-padding to the next power of two and also adding 8 times more zero-padding to the third dimension to increase the accuracy of finding the maximum
+7. Calculating the 3d $fft$ with $fftshift$ of $y_{l,k}$ again by zero-padding to the next power of two and also adding 8 times more zero-padding to the third dimension to increase the accuracy of finding the maximum
 8. Plotting the 2d ffts with and without getting the logarithm of amplitude and it's because the details become more visible by getting the log.
 9. Plotting the 1d ffts near the occurrence of each peak and finding the exact maximums.
 10. Changing the $log(Amplitude)$ in $sin(azimuth)$ vs. $Distance$ and draw it in a polar way.
